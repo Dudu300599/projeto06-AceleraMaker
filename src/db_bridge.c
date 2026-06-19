@@ -59,7 +59,6 @@ void GravarCliente(char* id, char* nome, char* saldo, char* status_retorno) {
     SQLFreeHandle(SQL_HANDLE_STMT, hstmt);
 }
 
-// === NOVAS FUNÇÕES PARA AS TRANSAÇÕES ===
 
 void ConsultarSaldoCliente(char* id, char* ret_existe, char* ret_saldo) {
     SQLHSTMT hstmt;
@@ -77,7 +76,6 @@ void ConsultarSaldoCliente(char* id, char* ret_existe, char* ret_saldo) {
         SQLLEN indicator;
         SQLGetData(hstmt, 1, SQL_C_SLONG, &saldo, 0, &indicator);
         
-        // Formata o saldo de volta para PIC 9(09) do COBOL
         char saldo_formatado[10];
         sprintf(saldo_formatado, "%09d", saldo);
         memcpy(ret_saldo, saldo_formatado, 9);
@@ -152,7 +150,6 @@ SQLHSTMT hstmtCursor = NULL;
 void AbrirCursorRelatorio(char* status_retorno) {
     SQLAllocHandle(SQL_HANDLE_STMT, hdbc, &hstmtCursor);
     
-    // O DB2 vai somar os creditos e debitos agrupando por cliente!
     char* query = "SELECT C.CLI_ID, "
                   "COALESCE(SUM(CASE WHEN T.TRX_TIPO = 'C' THEN T.TRX_VALOR ELSE 0 END), 0) AS TOT_CRED, "
                   "COALESCE(SUM(CASE WHEN T.TRX_TIPO = 'D' THEN T.TRX_VALOR ELSE 0 END), 0) AS TOT_DEB "
@@ -173,7 +170,7 @@ void LerCursorRelatorio(char* cli_id, char* tot_cred, char* tot_deb, char* statu
     SQLRETURN ret = SQLFetch(hstmtCursor);
     
     if (ret == SQL_NO_DATA) {
-        memcpy(status_retorno, "10", 2); // Fim do cursor (SQLCODE 100)
+        memcpy(status_retorno, "10", 2);
     } else if (SQL_SUCCEEDED(ret)) {
         SQLINTEGER id, cred, deb;
         SQLLEN ind1, ind2, ind3;
@@ -182,7 +179,6 @@ void LerCursorRelatorio(char* cli_id, char* tot_cred, char* tot_deb, char* statu
         SQLGetData(hstmtCursor, 2, SQL_C_SLONG, &cred, 0, &ind2);
         SQLGetData(hstmtCursor, 3, SQL_C_SLONG, &deb, 0, &ind3);
         
-        // Formata de volta para o padrão de leitura do COBOL
         char buf1[6], buf2[10], buf3[10];
         sprintf(buf1, "%05d", id);
         sprintf(buf2, "%09d", cred);
