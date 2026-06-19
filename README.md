@@ -46,7 +46,7 @@ Este projeto consiste em um sistema robusto de processamento em lote (batch) que
 Abaixo, registros que comprovam o funcionamento correto do cruzamento de dados, tratamento de exceções e estatísticas de processamento:
 
 ### 1. Arquivos de Entrada
-![Arquivos de Entrada (Clientes)](assets/in_clientes.png)
+![Arquivos de Entrada (Clientes)](assets/in_cliente.png)
 
 ![Arquivos de Entrada (Transações)](assets/in_transacoes.png)
 
@@ -62,5 +62,5 @@ Abaixo, registros que comprovam o funcionamento correto do cruzamento de dados, 
 ![erros](assets/tabela_transacoes.png)
 
 ### 5. Execução
-[Saida execucao](assets/out_execucao.gif)
+[Saida execucao](assets/out_execucao.png)
 [Execução do Sistema](assets/execucao.gif)
