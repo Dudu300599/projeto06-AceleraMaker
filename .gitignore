@@ -1,0 +1,9 @@
+# Ignorar executaveis e binarios compilados
+bin/*.exe
+bin/*.obj
+*.o
+*.dll
+
+# Ignorar arquivos temporarios do SO ou VS Code
+.vscode/
+.DS_Store
