@@ -62,5 +62,5 @@ Abaixo, registros que comprovam o funcionamento correto do cruzamento de dados, 
 ![erros](assets/tabela_transacoes.png)
 
 ### 5. Execução
-[Saida execucao](assets/out_execucao.png)
-[Execução do Sistema](assets/execucao.gif)
+![Saida execucao](assets/out_execucao.png)
+![Execução do Sistema](assets/execucao.gif)
